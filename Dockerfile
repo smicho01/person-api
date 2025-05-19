@@ -10,7 +10,7 @@ HEALTHCHECK --interval=30s --timeout=3s \
   CMD wget -q --spider http://localhost:8080/ || exit 1
 
 # Create a non-root user to run the application
-RUN addgroup -S spring && adduser -S spring -G spring
+RUN groupadd --system spring && useradd --system --gid spring --create-home spring
 USER spring:spring
 
 # Expose the application port
